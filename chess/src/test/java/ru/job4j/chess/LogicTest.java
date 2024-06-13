@@ -27,7 +27,8 @@ public class LogicTest {
         Figure bishopBlack2 = new BishopBlack(Cell.G5);
         logic.add(bishopBlack);
         logic.add(bishopBlack2);
-        OccupiedCellException exception = assertThrows(OccupiedCellException.class, () -> logic.move(Cell.C1, Cell.G5));
+        OccupiedCellException exception = assertThrows(OccupiedCellException.class,
+                () -> logic.move(Cell.C1, Cell.G5));
         assertThat(exception.getMessage()).isEqualTo("This diagonal is busy.");
     }
 }
