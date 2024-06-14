@@ -21,7 +21,7 @@ public class LogicTest {
     }
 
     @Test
-    void whenMoveThenOccupiedCellException() throws OccupiedCellException {
+    void whenMoveThenOccupiedCellException() {
         Logic logic = new Logic();
         Figure bishopBlack = new BishopBlack(Cell.C1);
         Figure bishopBlack2 = new BishopBlack(Cell.G5);
@@ -31,4 +31,15 @@ public class LogicTest {
                 () -> logic.move(Cell.C1, Cell.G5));
         assertThat(exception.getMessage()).isEqualTo("This diagonal is busy.");
     }
+
+    @Test
+    void whenMoveThenImpossibleMoveException() {
+        Logic logic = new Logic();
+        Figure bishopBlack = new BishopBlack(Cell.C1);
+        logic.add(bishopBlack);
+        ImpossibleMoveException exception = assertThrows(ImpossibleMoveException.class,
+                () -> logic.move(Cell.C1, Cell.C5));
+        assertThat(exception.getMessage()).isEqualTo("Could not move by diagonal from C1 to C5");
+    }
+
 }
